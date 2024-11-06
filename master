@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Chess.com in Modal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .open-btn {
+            padding: 15px 25px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .open-btn:hover {
+            background-color: #45a049;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .modal-content {
+            position: relative;
+            top: 10%;
+            margin: auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 900px;
+            height: 70%;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 30px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Button to Open the Modal -->
+    <button class="open-btn" onclick="openModal()">Open Chess.com</button>
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal Content (iframe) -->
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <iframe id="chessIframe" src="" title="Chess.com" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Open the modal and set the iframe src to Chess.com
+        function openModal() {
+            var modal = document.getElementById("myModal");
+            var iframe = document.getElementById("chessIframe");
+
+            // Set the src to Chess.com
+            iframe.src = "https://www.chess.com/play/online";  // Chess.com online game URL
+
+            modal.style.display = "block";  // Show the modal
+        }
+
+        // Close the modal
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            var iframe = document.getElementById("chessIframe");
+
+            iframe.src = "";  // Clear iframe src to stop Chess.com from running when modal is closed
+            modal.style.display = "none";  // Hide the modal
+        }
+
+        // Close the modal if the user clicks outside of the modal content
+        window.onclick = function(event) {
+            var modal = document.getElementById("myModal");
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+</html>
